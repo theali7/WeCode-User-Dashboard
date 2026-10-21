@@ -706,6 +706,6 @@ body{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),line
 @media(max-width:680px){body{background-size:24px 24px}}
 
 /* Improve grid contrast on light backgrounds. */
-:root:not([data-theme="dark"]){--grid-line:rgba(10,65,65,.14)}
+:root:not([data-theme="dark"]){--grid-line:rgba(10,65,65,.10)}
 :root:not([data-theme="dark"]) .hero{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px),radial-gradient(ellipse at 80% 35%,rgba(22,222,222,.09),transparent 55%);background-size:36px 36px,36px 36px,100% 100%;background-position:center top}
 @media(max-width:680px){:root:not([data-theme="dark"]) .hero{background-size:24px 24px,24px 24px,100% 100%}}
