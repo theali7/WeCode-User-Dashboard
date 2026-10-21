@@ -360,3 +360,5 @@ em{font-style:normal}
 @media(min-width:1101px){.desktop-nav{gap:clamp(26px,2.7vw,40px)}}
 .tech-0 img,.tech-1 img,.tech-2 img,.tech-3 img{border-radius:9px}
 @media(max-width:680px){.tech-0 img,.tech-1 img,.tech-2 img,.tech-3 img{border-radius:7px}}
+
+.hero-copy h1 em{color:#6AFF00}
