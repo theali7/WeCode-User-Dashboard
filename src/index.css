@@ -713,3 +713,20 @@ body{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),line
 /* Keep the light theme grid across the entire page, beyond the hero. */
 :root:not([data-theme="dark"]) body{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:36px 36px;background-position:center top}
 @media(max-width:680px){:root:not([data-theme="dark"]) body{background-size:24px 24px}}
+
+@scope (:root){
+
+/* Focused hero: clear action and consistently aligned learning paths. */
+.hero-copy h1{max-width:620px;line-height:1.1}
+.hero-buttons{gap:14px;align-items:center;flex-wrap:wrap}
+.hero-buttons .button:not(.button-secondary){min-height:58px;padding:18px 25px;font-size:14px;font-weight:700;background:var(--accent);color:#080808;border:1px solid var(--accent);box-shadow:0 8px 28px color-mix(in srgb,var(--accent) 20%,transparent)}
+.hero-buttons .button-secondary{background:var(--bg);box-shadow:none;color:var(--text)}
+.hero-visual{align-items:stretch;gap:22px;min-height:0;padding-top:12px}
+.hero-card,.frontend-card,.backend-card{margin-top:0;min-height:390px;border-top:3px solid var(--accent);padding:25px 22px;box-shadow:0 14px 36px #00000012}
+.hero-card h2,.backend-card h2{min-height:76px;margin-top:24px}
+.hero-card>p{min-height:40px;margin-top:12px}
+.hero-card .tags{min-height:48px;align-items:center;flex-wrap:wrap}
+.hero-card .cover-symbol{min-height:110px;max-height:140px}
+@media(max-width:680px){.hero-copy h1{font-size:clamp(35px,8.4vw,52px);letter-spacing:-1.4px}.hero-buttons{align-items:stretch}.hero-buttons .button{width:100%;justify-content:center}.hero-visual{gap:14px}.hero-card,.frontend-card,.backend-card{min-height:330px;padding:20px 14px}.hero-card h2,.backend-card h2{min-height:60px;font-size:24px}.hero-card .cover-symbol{min-height:90px}.hero-card .tags{gap:6px}}
+
+}
