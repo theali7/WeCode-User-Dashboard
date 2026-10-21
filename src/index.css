@@ -730,3 +730,6 @@ body{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),line
 @media(max-width:680px){.hero-copy h1{font-size:clamp(35px,8.4vw,52px);letter-spacing:-1.4px}.hero-buttons{align-items:stretch}.hero-buttons .button{width:100%;justify-content:center}.hero-visual{gap:14px}.hero-card,.frontend-card,.backend-card{min-height:330px;padding:20px 14px}.hero-card h2,.backend-card h2{min-height:60px;font-size:24px}.hero-card .cover-symbol{min-height:90px}.hero-card .tags{gap:6px}}
 
 }
+
+/* Use only the body grid; the hero keeps its transparent accent glow. */
+:root:not([data-theme="dark"]) .hero{background-image:radial-gradient(ellipse at 80% 35%,rgba(22,222,222,.09),transparent 55%);background-size:100% 100%;background-position:center top}
