@@ -698,3 +698,9 @@ em{font-style:normal}
 
 :root:not([data-theme="dark"]){--accent:#16DEDE;--accent-text:#16DEDE;--accent-soft:#16DEDE}
 :root:not([data-theme="dark"]) .hero-copy h1 em{color:#16DEDE}
+
+/* Subtle theme-aware background grid, painted behind the content. */
+:root{--grid-line:rgba(10,65,65,.055)}
+:root[data-theme="dark"]{--grid-line:rgba(255,255,255,.045)}
+body{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:48px 48px;background-position:center top}
+@media(max-width:680px){body{background-size:32px 32px}}
