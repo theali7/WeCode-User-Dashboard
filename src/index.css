@@ -277,3 +277,81 @@ em{font-style:normal}
  .learning-strip-step>svg{width:8px;margin-inline:1px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Balanced hero and centered navigation. */
+.header-inner{display:grid;grid-template-columns:auto 1fr auto;gap:28px}
+.desktop-nav{justify-content:center;gap:clamp(18px,2vw,32px)}
+.desktop-nav a{font-size:14px;font-weight:500}
+.hero{background:radial-gradient(ellipse at 80% 35%,color-mix(in srgb,var(--accent) 9%,transparent),transparent 55%)}
+.hero-layout{grid-template-columns:1fr 1fr;gap:48px;min-height:720px;padding-block:64px}
+.hero-copy{margin:0;min-width:0}
+.hero-copy h1{font-size:clamp(46px,4.7vw,68px);line-height:1.07;letter-spacing:-2.8px}
+.hero-badge{color:var(--accent-text);font-size:11px;letter-spacing:2px}
+.hero-description{max-width:480px;font-size:15px;line-height:1.8}
+.hero-visual{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:18px;height:auto;min-height:440px;width:100%;margin:0;transform:none;perspective:none;padding-bottom:44px}
+.hero-visual:before{inset:-70px -35px}
+.hero-card,.frontend-card,.backend-card{position:relative;inset:auto;width:100%;height:auto;min-height:360px;padding:23px 20px;border-radius:24px;transform:none;box-shadow:0 22px 50px #00000018;display:flex;flex-direction:column;overflow:hidden}
+.frontend-card{border-top:3px solid var(--accent);margin-top:-32px}
+.backend-card{border-top:3px solid var(--accent-text);margin-top:32px}
+.hero-card h2,.backend-card h2{font-size:clamp(22px,2.2vw,31px);line-height:1.15;letter-spacing:-.9px;margin-top:28px}
+.hero-card>p{font-size:11px;line-height:1.6;min-height:36px}
+.hero-card .small-label{font-size:8px;letter-spacing:1px}
+.hero-card .track-icon{width:34px;height:34px}
+.cover-symbol,.backend-symbol{font-size:76px;letter-spacing:-10px;height:128px;flex:1;min-height:115px;text-shadow:none}
+.hero-card .tags{gap:7px;margin-top:auto;padding-top:16px}
+.hero-card .tags span{font-size:9px;line-height:1.6;padding:0}
+.hero-card .tags span+span{padding-left:7px}
+.visual-caption{bottom:0;left:0;right:0;justify-content:center;font-size:10px}
+.learning-strip{border-radius:100px;padding:12px 15px}
+.hero-buttons .button{font-size:12px;min-height:54px}
+.tech-section{display:block;text-align:center;padding-block:76px}
+.tech-section h2{max-width:none;font-size:34px;margin-top:14px}
+.tech-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:34px}
+.tech-item{flex-direction:column;justify-content:center;gap:15px;padding:24px 12px;min-width:0;border:1px solid var(--border);border-radius:20px;background:var(--panel);transition:transform .2s,border-color .2s}
+.tech-item:hover{transform:translateY(-4px);border-color:var(--accent-text)}
+.tech-monogram{width:62px;height:62px;border:0;border-radius:50%;background:var(--panel-soft);box-shadow:none}
+.tech-monogram img{width:35px;height:35px;filter:grayscale(1) brightness(.35)}
+:root[data-theme='dark'] .tech-monogram img{filter:grayscale(1) brightness(0) invert(1)}
+.tech-item strong{font-size:15px}
+.tech-item p{font-size:11px;line-height:1.6;margin-top:6px}
+@media(min-width:681px) and (max-width:1100px){
+ .header-inner{gap:18px}.desktop-nav{gap:18px}.desktop-nav a{font-size:13px}
+ .header-cta{display:none}
+ .hero-layout{gap:28px}
+ .hero-copy h1{font-size:clamp(40px,4.7vw,54px)}
+ .hero-visual{gap:12px;min-height:390px}
+ .hero-card{padding:19px 14px;min-height:330px}
+ .hero-card h2,.backend-card h2{font-size:23px}
+ .hero-card .small-label{font-size:7px}
+ .cover-symbol,.backend-symbol{font-size:62px}
+ .hero-card .tags span{font-size:8px}
+ .tech-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:800px){
+ .hero-layout{display:flex;flex-direction:column;align-items:stretch;gap:42px;padding-block:44px}
+ .hero-copy h1{max-width:650px;font-size:clamp(42px,7vw,60px)}
+ .hero-description{max-width:590px}
+ .hero-visual{max-width:580px;align-self:center;min-height:0}
+ .hero-card,.frontend-card,.backend-card{min-height:340px}
+ .hero-card h2,.backend-card h2{font-size:28px}
+}
+@media(max-width:680px){
+ .header-inner{display:flex;gap:16px}.desktop-nav{display:none}
+ .hero-copy h1{font-size:clamp(39px,8.6vw,56px);letter-spacing:-1.9px}
+ .hero-badge{font-size:9px}
+ .hero-visual{gap:12px;padding-bottom:35px}
+ .hero-card,.frontend-card,.backend-card{padding:20px 14px;border-radius:18px;min-height:310px;margin-top:0}
+ .hero-card h2,.backend-card h2{font-size:clamp(19px,4.5vw,27px);margin-top:22px}
+ .hero-card-top{gap:6px}.hero-card .small-label{font-size:6px}
+ .hero-card .track-icon{width:27px;height:27px}.hero-card .track-icon svg{width:20px}
+ .hero-card .card-diagonal{font-size:17px}
+ .hero-card>p{font-size:9px}
+ .cover-symbol,.backend-symbol{font-size:58px;letter-spacing:-8px;min-height:95px}
+ .hero-card .tags{gap:4px}.hero-card .tags span{font-size:7px}
+ .hero-card .tags span+span{padding-left:4px}
+ .tech-section{padding-block:48px}.tech-section h2{font-size:28px}
+ .tech-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:26px}
+ .tech-item{padding:18px 8px;gap:12px;border-radius:15px;align-items:center}
+ .tech-monogram{width:48px;height:48px}.tech-monogram img{width:28px;height:28px}
+ .tech-item strong{font-size:12px}.tech-item p{font-size:9px}
+}
