@@ -355,3 +355,8 @@ em{font-style:normal}
  .tech-monogram{width:48px;height:48px}.tech-monogram img{width:28px;height:28px}
  .tech-item strong{font-size:12px}.tech-item p{font-size:9px}
 }
+
+/* More breathing room in desktop navigation and softer technology marks. */
+@media(min-width:1101px){.desktop-nav{gap:clamp(26px,2.7vw,40px)}}
+.tech-0 img,.tech-1 img,.tech-2 img,.tech-3 img{border-radius:9px}
+@media(max-width:680px){.tech-0 img,.tech-1 img,.tech-2 img,.tech-3 img{border-radius:7px}}
