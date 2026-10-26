@@ -37,16 +37,11 @@ function persist(key: string, value: string) {
     /* Storage may be unavailable in private contexts. */
   }
 }
-type ModalState = "start" | "login" | "front" | "back" | "plus" | "ready" | null | number
+type ModalState = "start" | "login" | "front" | "back" | "ready" | null | number
 
 export default function App() {
   const [lang, setLang] = useState<Language>(() =>
     stored("wecode-language") === "ru" ? "ru" : "en",
-  )
-  const [theme, setTheme] = useState(
-    () =>
-      stored("wecode-theme") ||
-      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"),
   )
   const [menu, setMenu] = useState(false)
   const [modal, setModal] = useState<ModalState>(null)
@@ -55,9 +50,9 @@ export default function App() {
   const [ai, setAi] = useState(0)
   const t = translations[lang]
   useEffect(() => {
-    document.documentElement.dataset.theme = theme
-    persist("wecode-theme", theme)
-  }, [theme])
+    document.documentElement.dataset.theme = "dark"
+    persist("wecode-theme", "dark")
+  }, [])
   useEffect(() => {
     document.documentElement.lang = lang
     document.title =
@@ -70,7 +65,7 @@ export default function App() {
     setModal(value)
     setMenu(false)
   }
-  const links = ["paths", "practice", "projects", "plus"]
+  const links = ["paths", "practice", "projects"]
   const curriculum =
     modal === "back" || (modal === "ready" && path === "back")
       ? t.backModules
@@ -82,9 +77,7 @@ export default function App() {
         ? t.loginTitle
         : modal === "ready"
           ? t.ready
-          : modal === "plus"
-            ? "WeCode Plus"
-            : typeof modal === "number"
+          : typeof modal === "number"
               ? t.projects[modal]
               : `${t.programTitle}: ${modal === "back" ? t.back : t.front}`
 
@@ -121,13 +114,6 @@ export default function App() {
               <span className={lang === "en" ? "selected-language" : ""}>
                 EN
               </span>
-            </button>
-            <button
-              className="icon-button theme-button"
-              aria-label={t.theme}
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              <Icon name={theme === "dark" ? "sun" : "moon"} size={18} />
             </button>
             <button className="login-button" onClick={() => open("login")}>
               {t.login}
@@ -473,55 +459,6 @@ export default function App() {
             </div>
           </div>
         </section>
-        <section className="section container" id="plus">
-          <SectionHeading eyebrow={t.priceTag} title={t.priceTitle} />
-          <p className="examples-label">{t.planned}</p>
-          <div className="pricing-grid">
-            <article className="pricing-card">
-              <div className="pricing-top">
-                <h3>{t.freeName}</h3>
-                <span className="free-tag">
-                  {lang === "ru" ? "Бесплатно" : "Free"}
-                </span>
-              </div>
-              <p>{t.freeText}</p>
-              <ul>
-                {t.freeItems.map((item) => (
-                  <li key={item}>
-                    <Icon name="check" size={18} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Button onClick={() => open("start")}>
-                {t.start}
-                <Icon name="arrow" size={18} />
-              </Button>
-            </article>
-            <article className="pricing-card plus-card">
-              <div className="pricing-top">
-                <h3>
-                  WeCode <em>Plus</em>
-                </h3>
-                <Icon name="spark" size={25} />
-              </div>
-              <p>{t.plusText}</p>
-              <ul>
-                {t.plusItems.map((item) => (
-                  <li key={item}>
-                    <Icon name="check" size={18} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Button secondary onClick={() => open("plus")}>
-                {t.plusAction}
-                <Icon name="arrow" size={18} />
-              </Button>
-              <small>{t.plusNote}</small>
-            </article>
-          </div>
-        </section>
         <section className="final-cta container">
           <p className="eyebrow">{t.badge}</p>
           <h2>
@@ -622,19 +559,6 @@ export default function App() {
                 {t.choose}
                 <Icon name="arrow" />
               </Button>
-            </>
-          ) : modal === "plus" ? (
-            <>
-              <p>{t.plusText}</p>
-              <ul className="modal-list">
-                {t.plusItems.map((item) => (
-                  <li key={item}>
-                    <Icon name="spark" size={18} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="modal-badge">{t.plusNote}</p>
             </>
           ) : typeof modal === "number" ? (
             <>
