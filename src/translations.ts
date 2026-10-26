@@ -136,8 +136,8 @@ export const translations = {
     save: "Составить мой маршрут",
     ready: "Твой маршрут готов",
     readyDesc:
-      "Выбор сохранён на этом устройстве. Это предварительный маршрут — учебный кабинет пока в разработке.",
-    loginTitle: "Вход скоро появится",
+      "Выбор сохранён в твоём профиле. Учебный кабинет пока в разработке.",
+    loginTitle: "Вход в WeCode",
     loginDesc:
       "Авторизация ещё не подключена. А пока можно выбрать направление и познакомиться с учебной программой.",
     close: "Закрыть",
@@ -309,8 +309,8 @@ export const translations = {
     save: "Create my learning path",
     ready: "Your path is ready",
     readyDesc:
-      "Your choice is saved on this device. This is a preview — the learning workspace is still in development.",
-    loginTitle: "Login is coming soon",
+      "Your choice is saved to your profile. The learning workspace is still in development.",
+    loginTitle: "Log in to WeCode",
     loginDesc:
       "Authentication is not connected yet. For now, choose a path and explore the curriculum.",
     close: "Close",
