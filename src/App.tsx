@@ -1,3 +1,5 @@
+import Account, { useAccount } from "./Account"
+import { supabase } from "./supabase"
 import { useEffect, useState } from "react"
 import {
   Button,
@@ -40,6 +42,8 @@ function persist(key: string, value: string) {
 type ModalState = "start" | "login" | "front" | "back" | "ready" | null | number
 
 export default function App() {
+  const { user, recovery, setRecovery } = useAccount()
+  const [profileError, setProfileError] = useState("")
   const [lang, setLang] = useState<Language>(() =>
     stored("wecode-language") === "ru" ? "ru" : "en",
   )
@@ -62,9 +66,10 @@ export default function App() {
     persist("wecode-language", lang)
   }, [lang])
   const open = (value: ModalState) => {
-    setModal(value)
+    setModal(value === "start" && !user ? "login" : value)
     setMenu(false)
   }
+  useEffect(() => { if (recovery) setModal("login") }, [recovery])
   const links = ["paths", "practice", "projects"]
   const curriculum =
     modal === "back" || (modal === "ready" && path === "back")
@@ -74,7 +79,7 @@ export default function App() {
     modal === "start"
       ? t.modalTitle
       : modal === "login"
-        ? t.loginTitle
+        ? (recovery ? lang === "ru" ? "Новый пароль" : "New password" : user ? lang === "ru" ? "Мой профиль" : "My profile" : t.loginTitle)
         : modal === "ready"
           ? t.ready
           : typeof modal === "number"
@@ -116,7 +121,7 @@ export default function App() {
               </span>
             </button>
             <button className="login-button" onClick={() => open("login")}>
-              {t.login}
+              {user ? (lang === "ru" ? "Мой профиль" : "My profile") : t.login}
             </button>
             <Button className="header-cta" onClick={() => open("start")}>
               {t.start}
@@ -146,7 +151,7 @@ export default function App() {
               </a>
             ))}
             <Button secondary onClick={() => open("login")}>
-              {t.login}
+              {user ? (lang === "ru" ? "Мой профиль" : "My profile") : t.login}
             </Button>
             <Button onClick={() => open("start")}>{t.start}</Button>
           </nav>
@@ -506,11 +511,17 @@ export default function App() {
         >
           {modal === "start" ? (
             <>
-              <span className="modal-badge">{t.proto}</span>
-              <p>{t.modalDesc}</p>
+              <span className="modal-badge">{lang === "ru" ? "Твой путь обучения" : "Your learning path"}</span>
+              <p>{lang === "ru" ? "Выбери направление и уровень. Сохраним их в твоём профиле." : "Choose a path and level. We will save them to your profile."}</p>
+              {profileError && <p role="alert">{profileError}</p>}
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault()
+                  setProfileError("")
+                  if (!user) { setModal("login"); return }
+                  const { data: existing, error: readError } = await supabase.from("profiles").select("display_name").eq("id", user.id).maybeSingle()
+                  const { error } = readError ? { error: readError } : await supabase.from("profiles").upsert({ id: user.id, display_name: existing?.display_name || String(user.user_metadata?.display_name || user.user_metadata?.name || ""), path_id: path, level: Number(level) })
+                  if (error) { setProfileError(lang === "ru" ? "Не удалось сохранить выбор. Попробуй снова." : "Could not save your selection. Please try again."); return }
                   persist("wecode-path", path)
                   persist("wecode-level", level)
                   setModal("ready")
@@ -553,13 +564,7 @@ export default function App() {
               </form>
             </>
           ) : modal === "login" ? (
-            <>
-              <p>{t.loginDesc}</p>
-              <Button onClick={() => setModal("start")}>
-                {t.choose}
-                <Icon name="arrow" />
-              </Button>
-            </>
+            <Account user={user} lang={lang} recovery={recovery} onRecovered={() => setRecovery(false)} onContinue={() => setModal("start")} />
           ) : typeof modal === "number" ? (
             <>
               <span className="modal-badge">{t.included}</span>
