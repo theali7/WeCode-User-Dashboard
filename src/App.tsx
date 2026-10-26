@@ -1,3 +1,4 @@
+import Journey from "./Journey"
 import Account, { useAccount } from "./Account"
 import { supabase } from "./supabase"
 import { useEffect, useState } from "react"
@@ -85,6 +86,8 @@ export default function App() {
           : typeof modal === "number"
               ? t.projects[modal]
               : `${t.programTitle}: ${modal === "back" ? t.back : t.front}`
+
+  if (user && !recovery) return <Journey key={user.id} user={user} lang={lang} onLanguage={() => setLang(lang === "ru" ? "en" : "ru")} />
 
   return (
     <>
