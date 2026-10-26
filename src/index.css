@@ -733,3 +733,6 @@ body{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),line
 
 /* Use only the body grid; the hero keeps its transparent accent glow. */
 :root:not([data-theme="dark"]) .hero{background-image:radial-gradient(ellipse at 80% 35%,rgba(22,222,222,.09),transparent 55%);background-size:100% 100%;background-position:center top}
+
+/* Center every native dialog within the visible viewport. */
+:root .modal{position:fixed;inset:0;margin:auto;max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain}
