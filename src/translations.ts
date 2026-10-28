@@ -1,6 +1,6 @@
 export const translations = {
   ru: {
-    heroStart: "Начать учиться бесплатно",
+    heroStart: "Зарегистрироваться",
     explorePaths: "Смотреть направления",
     learningFlowLabel: "Как проходит обучение",
     learningFlow: ["Теория", "Упражнения", "Задачи", "Проекты"],
@@ -16,7 +16,7 @@ export const translations = {
     finalButton: "Выбрать направление",
     nav: ["Направления", "Задачи", "Проекты"],
     login: "Вход",
-    start: "Начать бесплатно",
+    start: "Зарегистрироваться",
     choose: "Выбрать направление",
     badge: "УЧИСЬ. ПРАКТИКУЙСЯ. СОЗДАВАЙ.",
     hero1: "Учись писать код.",
@@ -169,7 +169,7 @@ export const translations = {
     included: "В основном бесплатном пути",
   },
   en: {
-    heroStart: "Start learning for free",
+    heroStart: "Sign up",
     explorePaths: "Explore learning paths",
     learningFlowLabel: "How learning works",
     learningFlow: ["Theory", "Exercises", "Challenges", "Projects"],
@@ -185,7 +185,7 @@ export const translations = {
     finalButton: "Choose your learning path",
     nav: ["Learning paths", "Challenges", "Projects"],
     login: "Log in",
-    start: "Start for free",
+    start: "Sign up",
     choose: "Choose your path",
     badge: "LEARN. PRACTICE. BUILD.",
     hero1: "Learn to code.",
