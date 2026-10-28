@@ -44,6 +44,7 @@ type ModalState = "start" | "login" | "front" | "back" | "ready" | null | number
 
 export default function App() {
   const { user, recovery, setRecovery } = useAccount()
+  const [authMode, setAuthMode] = useState<"login" | "signup">("login")
   const [profileError, setProfileError] = useState("")
   const [lang, setLang] = useState<Language>(() =>
     stored("wecode-language") === "ru" ? "ru" : "en",
@@ -67,6 +68,7 @@ export default function App() {
     persist("wecode-language", lang)
   }, [lang])
   const open = (value: ModalState) => {
+    setAuthMode(value === "start" ? "signup" : "login")
     setModal(value === "start" && !user ? "login" : value)
     setMenu(false)
   }
@@ -567,7 +569,7 @@ export default function App() {
               </form>
             </>
           ) : modal === "login" ? (
-            <Account user={user} lang={lang} recovery={recovery} onRecovered={() => setRecovery(false)} onContinue={() => setModal("start")} />
+            <Account initialMode={authMode} user={user} lang={lang} recovery={recovery} onRecovered={() => setRecovery(false)} onContinue={() => setModal("start")} />
           ) : typeof modal === "number" ? (
             <>
               <span className="modal-badge">{t.included}</span>
