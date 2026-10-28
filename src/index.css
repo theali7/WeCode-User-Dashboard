@@ -742,3 +742,5 @@ body{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),line
 :root .desktop-nav a{display:inline-flex;align-items:center;justify-content:center;padding:13px 19px;min-height:46px;white-space:nowrap;letter-spacing:.3px;border-radius:10px}
 @media(min-width:901px) and (max-width:1100px){:root .desktop-nav{gap:6px}:root .desktop-nav a{padding-inline:12px}}
 :root .mobile-nav>a{padding:14px 16px;min-height:48px}
+
+:root .tech-monogram img[src$="javascript.svg"],:root .tech-monogram img[src$="typescript.svg"]{border-radius:8px;overflow:hidden}
