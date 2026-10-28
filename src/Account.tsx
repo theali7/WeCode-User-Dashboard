@@ -18,11 +18,11 @@ export function useAccount() {
   return { user, recovery, setRecovery }
 }
 
-export default function Account({ user, lang, recovery = false, onRecovered, onContinue }: {
-  user: User | null; lang: string; recovery?: boolean; onRecovered: () => void; onContinue: () => void
+export default function Account({ user, lang, initialMode = "login", recovery = false, onRecovered, onContinue }: {
+  initialMode?: "login" | "signup"; user: User | null; lang: string; recovery?: boolean; onRecovered: () => void; onContinue: () => void
 }) {
   const ru = lang === "ru"
-  const [mode, setMode] = useState<"login" | "signup" | "reset">("login")
+  const [mode, setMode] = useState<"login" | "signup" | "reset">(initialMode)
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
